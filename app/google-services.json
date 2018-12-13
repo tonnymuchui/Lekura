@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1055895272345",
+    "firebase_url": "https://lekura-fe922.firebaseio.com",
+    "project_id": "lekura-fe922",
+    "storage_bucket": "lekura-fe922.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055895272345:android:970ac0873b05642b",
+        "android_client_info": {
+          "package_name": "com.lekura.lekura"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055895272345-os2iu1t2s098vup7ds1nod1guh8nbsl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQRW6pL17Z94vgN6H6_Ul57wjtVHUCGDU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
