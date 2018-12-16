@@ -83,12 +83,6 @@ public class SettingActivity extends AppCompatActivity {
                     });
         }
     }
-    private void sendUserToChatActivity(){
-        Intent mainIntent = new Intent(SettingActivity.this,ChatActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
-        finish();
-    }
     private void RetriveUserData() {
 
         reference.child("Users").child(currentUser)
@@ -98,7 +92,7 @@ public class SettingActivity extends AppCompatActivity {
                         if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name") && (dataSnapshot.hasChild("image")))){
 
                             String retriveUserName = dataSnapshot.child("name").getValue().toString();
-                            String retriveStatus = dataSnapshot.child("status").getValue().toString();
+                            String retriveStatus = dataSnapshot.child("Status").getValue().toString();
                             String retriveProfilePhoto = dataSnapshot.child("image").getValue().toString();
 
                             set_user_name.setText(retriveUserName);
@@ -108,7 +102,7 @@ public class SettingActivity extends AppCompatActivity {
                         else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
 
                             String retriveUserName = dataSnapshot.child("name").getValue().toString();
-                            String retriveStatus = dataSnapshot.child("status").getValue().toString();
+                            String retriveStatus = dataSnapshot.child("Status").getValue().toString();
 
                             set_user_name.setText(retriveUserName);
                             set_status_name.setText(retriveStatus);
@@ -124,4 +118,12 @@ public class SettingActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void sendUserToChatActivity(){
+        Intent mainIntent = new Intent(SettingActivity.this,ChatActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
+    }
+
 }
