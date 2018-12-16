@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.lekura.lekura.R;
 
 import butterknife.BindView;
@@ -32,6 +34,7 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     private FirebaseAuth auth;
+    private DatabaseReference RootRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class SignupActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         auth = FirebaseAuth.getInstance();
+        RootRef = FirebaseDatabase.getInstance().getReference();
 
         btn_reset_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +85,9 @@ public class SignupActivity extends AppCompatActivity {
                                 if (!task.isSuccessful()){
                                     Toast.makeText(SignupActivity.this, "Sign up failed." + task.getException(), Toast.LENGTH_SHORT).show();
                                 }else {
+                                    String CurrentUserId =  auth.getCurrentUser().getUid();
+                                    RootRef.child("Users").child(CurrentUserId).setValue("");
+
                                     startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                                     finish();
                                 }
