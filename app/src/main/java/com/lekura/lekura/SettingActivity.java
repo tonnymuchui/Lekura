@@ -52,7 +52,7 @@ public class SettingActivity extends AppCompatActivity {
                 updateSetting();
             }
         });
-//        RetriveUserData();
+        RetriveUserData();
     }
 
     private void updateSetting() {
@@ -89,39 +89,39 @@ public class SettingActivity extends AppCompatActivity {
         startActivity(mainIntent);
         finish();
     }
-//    private void RetriveUserData() {
-//
-//        reference.child("Users").child(currentUser)
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name") && (dataSnapshot.hasChild("image")))){
-//
-//                            String retriveUserName = dataSnapshot.child("name").getValue().toString();
-//                            String retriveStatus = dataSnapshot.child("status").getValue().toString();
-//                            String retriveProfilePhoto = dataSnapshot.child("image").getValue().toString();
-//
-//                            set_user_name.setText(retriveUserName);
-//                            set_status_name.setText(retriveStatus);
-//
-//                        }
-//                        else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
-//
-//                            String retriveUserName = dataSnapshot.child("name").getValue().toString();
-//                            String retriveStatus = dataSnapshot.child("status").getValue().toString();
-//
-//                            set_user_name.setText(retriveUserName);
-//                            set_status_name.setText(retriveStatus);
-//
-//                        } else {
-//                            Toast.makeText(SettingActivity.this,"Update profile",Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
-//    }
+    private void RetriveUserData() {
+
+        reference.child("Users").child(currentUser)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name") && (dataSnapshot.hasChild("image")))){
+
+                            String retriveUserName = dataSnapshot.child("name").getValue().toString();
+                            String retriveStatus = dataSnapshot.child("status").getValue().toString();
+                            String retriveProfilePhoto = dataSnapshot.child("image").getValue().toString();
+
+                            set_user_name.setText(retriveUserName);
+                            set_status_name.setText(retriveStatus);
+
+                        }
+                        else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
+
+                            String retriveUserName = dataSnapshot.child("name").getValue().toString();
+                            String retriveStatus = dataSnapshot.child("status").getValue().toString();
+
+                            set_user_name.setText(retriveUserName);
+                            set_status_name.setText(retriveStatus);
+
+                        } else {
+                            Toast.makeText(SettingActivity.this,"Update profile",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
 }
