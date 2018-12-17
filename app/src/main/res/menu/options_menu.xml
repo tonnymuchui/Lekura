@@ -4,7 +4,7 @@
 
     <item
         android:title="Create group"
-        android:id="@+id/main_find_create_option"
+        android:id="@+id/main_find_group_option"
         app:showAsAction="never">
     </item>
     <item

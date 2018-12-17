@@ -1,13 +1,19 @@
 package com.lekura.lekura.Chat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,7 +63,52 @@ public class ChatActivity extends AppCompatActivity {
             sendUserToSettingActivity();
 
         }
+        if (item.getItemId() == R.id.main_find_group_option){
+            RequestNewGroup();
+        }
         return true;
+    }
+
+    private void RequestNewGroup() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ChatActivity.this,R.style.AlertDialog);
+        builder.setTitle("Group Name");
+
+        final EditText groupNameField = new EditText(ChatActivity.this);
+        groupNameField.setHint("fifa");
+        builder.setView(groupNameField);
+
+        builder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                String groupName = groupNameField.getText().toString();
+                if (TextUtils.isEmpty(groupName)){
+                    Toast.makeText(ChatActivity.this,"Enter group Name",Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    CreateNewGroup(groupName);
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void CreateNewGroup(final String groupName) {
+        rootReference.child("Groups").child(groupName).setValue("")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(ChatActivity.this,groupName + "Created Succesfully",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
