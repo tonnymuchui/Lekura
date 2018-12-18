@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,19 +28,37 @@ import com.lekura.lekura.Auth.SignupActivity;
 import com.lekura.lekura.R;
 import com.lekura.lekura.SettingActivity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ChatActivity extends AppCompatActivity {
+    @BindView(R.id.listView) ListView listView;
+    private ArrayAdapter<String> arrayAdapter;
+    private ArrayList<String> list_group = new ArrayList<>();
     private FirebaseAuth auth;
     private FirebaseUser user;
     private DatabaseReference rootReference;
+    private DatabaseReference GroupRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        ButterKnife.bind(this);
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,list_group);
+        listView.setAdapter(arrayAdapter);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         rootReference = FirebaseDatabase.getInstance().getReference();
+        GroupRef = FirebaseDatabase.getInstance().getReference().child("Groups");
+
+        RetriveDataBase();
     }
 
     @Override
@@ -149,5 +169,25 @@ public class ChatActivity extends AppCompatActivity {
         settingIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(settingIntent);
         finish();
+    }
+    private void RetriveDataBase() {
+        GroupRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Set<String> set = new HashSet<>();
+                Iterator iterator = dataSnapshot.getChildren().iterator();
+                while (iterator.hasNext()){
+                    set.add(((DataSnapshot)iterator.next()).getKey());
+                }
+                list_group.clear();
+                list_group.addAll(set);
+                arrayAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
