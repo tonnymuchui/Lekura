@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Chat.ChatActivity" />
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".Chat.GroupChatActivity"></activity>
     </application>
 
 </manifest>
