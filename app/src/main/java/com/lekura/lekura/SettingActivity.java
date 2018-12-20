@@ -2,6 +2,7 @@ package com.lekura.lekura;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,6 +36,7 @@ public class SettingActivity extends AppCompatActivity {
     private String currentUser;
     private FirebaseAuth sauth;
     private DatabaseReference reference;
+    private static final int Gallerypick = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,24 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
         RetriveUserData();
+
+        set_profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent galleryintent = new Intent();
+                galleryintent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryintent.setType("image/*");
+                startActivityForResult(galleryintent, Gallerypick);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     private void updateSetting() {
