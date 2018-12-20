@@ -61,6 +61,7 @@ public class GroupChatActivity extends AppCompatActivity {
             public void onClick(View v) {
                 saveMessageToFirebase();
                 input_group_text.setText("");
+                my_scroll_view.fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
     }
@@ -157,6 +158,8 @@ public class GroupChatActivity extends AppCompatActivity {
             String chatTime = (String) ((DataSnapshot)iterator.next()).getValue();
 
             group_chat_text.append(chatName + " \n" + chatmessage + "\n" + chatTime + "  " + chatdate + "\n\n\n");
+
+            my_scroll_view.fullScroll(ScrollView.FOCUS_DOWN);
         }
     }
 
