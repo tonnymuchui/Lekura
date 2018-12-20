@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -59,6 +61,15 @@ public class ChatActivity extends AppCompatActivity {
         GroupRef = FirebaseDatabase.getInstance().getReference().child("Groups");
 
         RetriveDataBase();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String currentGroupName = parent.getItemAtPosition(position).toString();
+                Intent group_Intent = new Intent(getApplicationContext(),GroupChatActivity.class);
+                group_Intent.putExtra("groupName", currentGroupName);
+                startActivity(group_Intent);
+            }
+        });
     }
 
     @Override
@@ -93,7 +104,6 @@ public class ChatActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ChatActivity.this,R.style.AlertDialog);
         builder.setTitle("Group Name");
-
         final EditText groupNameField = new EditText(ChatActivity.this);
         groupNameField.setHint("fifa");
         builder.setView(groupNameField);
