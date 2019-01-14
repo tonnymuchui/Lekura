@@ -26,33 +26,37 @@
             android:layout_height="200dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/gaming" />
+            app:srcCompat="@drawable/logo1" />
 
         <EditText
             android:id="@+id/logemail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/white"
+            android:ems="10"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/baseline_mail_outline_white_18"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/input_login"
-            android:textColorHint="@color/input_login_hint" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/logpassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/baseline_lock_white_18"
             android:hint="@string/hint_password"
+            android:ems="10"
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/input_login"
-            android:textColorHint="@color/input_login_hint" />
+            android:textColorHighlight="@color/white"
+            android:textColorHint="@color/white" />
 
         <!-- Login Button -->
 
@@ -61,9 +65,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/btn_login_bg"
-            android:text="@string/btn_login"
-            android:textColor="@color/btn_login" />
+            android:background="@drawable/background_button"
+            android:text= "@string/btn_login"
+            android:textColor="@color/btn_login"
+            android:textAllCaps="false"/>
 
         <!-- Link to Reset password Screen -->
         <Button
@@ -86,6 +91,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15dp" />
+
         <ProgressBar
             android:id="@+id/log_progressBar"
             android:layout_width="30dp"

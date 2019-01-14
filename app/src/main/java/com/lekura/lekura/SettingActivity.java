@@ -27,6 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.lekura.lekura.Auth.LoginActivity;
 import com.lekura.lekura.Chat.ChatActivity;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -109,7 +110,7 @@ public class SettingActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
 
                             Toast.makeText(SettingActivity.this,"Profile image Changed",Toast.LENGTH_SHORT).show();
-                            final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
+                            final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().getResult().toString();
                             reference.child("Users").child(currentUserID).child("image")
                                     .setValue(downloadUrl)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -124,7 +125,7 @@ public class SettingActivity extends AppCompatActivity {
                                            }
                                         }
                                     });
-                            
+
                         }else {
                             String message = task.getException().toString();
                             Toast.makeText(SettingActivity.this,"Error: "+ message,Toast.LENGTH_SHORT).show();
@@ -176,9 +177,10 @@ public class SettingActivity extends AppCompatActivity {
                             String retriveUserName = dataSnapshot.child("name").getValue().toString();
                             String retriveStatus = dataSnapshot.child("Status").getValue().toString();
                             String retriveProfilePhoto = dataSnapshot.child("image").getValue().toString();
-
                             set_user_name.setText(retriveUserName);
                             set_status_name.setText(retriveStatus);
+                            Picasso.get().load(retriveProfilePhoto).into(set_profile_image);
+
 
                         }
                         else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){

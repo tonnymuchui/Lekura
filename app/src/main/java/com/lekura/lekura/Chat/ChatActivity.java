@@ -2,18 +2,23 @@ package com.lekura.lekura.Chat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,13 +51,24 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference rootReference;
     private DatabaseReference GroupRef;
+    private Typeface mTypeface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
-        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,list_group);
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,list_group){
+            @Override
+            public View getView(int position, View view, ViewGroup viewGroup){
+                TextView item = (TextView) super.getView(position,view,viewGroup);
+                item.setTypeface(mTypeface);
+                item.setTextColor(Color.parseColor("#FF3E80F1"));
+                item.setTypeface(item.getTypeface(),Typeface.BOLD);
+                item.setTextSize(TypedValue.COMPLEX_UNIT_DIP,18);
+                return item;
+            }
+        };
         listView.setAdapter(arrayAdapter);
 
         auth = FirebaseAuth.getInstance();

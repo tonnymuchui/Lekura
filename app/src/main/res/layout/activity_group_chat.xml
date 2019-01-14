@@ -27,7 +27,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:layout_marginBottom="60dp" />
+                android:layout_marginBottom="10dp" />
         </LinearLayout>
     </ScrollView>
 
@@ -51,6 +51,6 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:id="@+id/send_message_button"
-            android:src="@drawable/send"/>
+            android:src="@drawable/baseline_send_black_18"/>
     </LinearLayout>
 </RelativeLayout>
