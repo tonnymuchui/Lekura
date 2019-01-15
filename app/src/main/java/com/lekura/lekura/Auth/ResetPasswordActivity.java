@@ -20,9 +20,8 @@ import butterknife.ButterKnife;
 
 
 public class ResetPasswordActivity extends AppCompatActivity {
-    @BindView(R.id.res_email)
-    EditText inputEmail;
-    @BindView(R.id.res_btn_reset_password)
+    @BindView(R.id.res_email) EditText res_inputEmail;
+    @BindView(R.id.btn_reset_password)
     Button res_btn_reset_password;
     @BindView(R.id.res_btn_back) Button res_btn_back;
     @BindView(R.id.res_progressBar)
@@ -45,7 +44,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = inputEmail.getText().toString().trim();
+                String email = res_inputEmail.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplication(), "Enter your registered email", Toast.LENGTH_SHORT).show();
