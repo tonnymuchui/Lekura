@@ -105,6 +105,7 @@ public class ChatActivity extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.main_find_friends_option){
 
+            startActivity(new Intent(ChatActivity.this,Find_freindsActivity.class));
         }
         if (item.getItemId() == R.id.main_find_Settings_option){
             sendUserToSettingActivity();

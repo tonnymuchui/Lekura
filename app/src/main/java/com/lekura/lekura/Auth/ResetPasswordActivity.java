@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.lekura.lekura.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class ResetPasswordActivity extends AppCompatActivity {
@@ -31,6 +32,8 @@ public class ResetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+        ButterKnife.bind(this);
+
         auth = FirebaseAuth.getInstance();
         res_btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
