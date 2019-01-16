@@ -40,7 +40,7 @@ public class GroupChatActivity extends AppCompatActivity {
     @BindView(R.id.send_message_button) ImageButton send_message_button;
     private FirebaseAuth Gauth;
     private DatabaseReference userRef,GroupNameRef,GroupMessageKeyRef;
-    private String currentGroupName,currentUserId,currentUserName,currentDate,currentTime;
+    private String currentGroupName,currentUserId,currentUserName,currentDate,currentTime, receiverUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class GroupChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group_chat);
         ButterKnife.bind(this);
 
+        receiverUserId = getIntent().getExtras().get("visit_user").toString();
         currentGroupName = getIntent().getExtras().get("groupName").toString();
         Toast.makeText(GroupChatActivity.this,currentGroupName,Toast.LENGTH_SHORT).show();
         Gauth = FirebaseAuth.getInstance();

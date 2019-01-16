@@ -6,9 +6,9 @@ public class Contacts {
     public Contacts(){
 
     }
-    public Contacts(String name, String status, String image) {
+    public Contacts(String name, String Status, String image) {
         this.name = name;
-        Status = status;
+        Status = Status;
         this.image = image;
     }
 
@@ -24,8 +24,8 @@ public class Contacts {
         return Status;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setStatus(String Status) {
+        Status = Status;
     }
 
     public String getImage() {

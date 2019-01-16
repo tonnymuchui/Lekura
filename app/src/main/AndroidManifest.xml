@@ -28,11 +28,12 @@
         </activity>
         <activity android:name=".Chat.ChatActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".Chat.GroupChatActivity"></activity>
+        <activity android:name=".Chat.GroupChatActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Chat.Find_freindsActivity"></activity>
+        <activity android:name=".Chat.Find_freindsActivity" />
+        <activity android:name=".Chat.MessageChatActivity"></activity>
     </application>
 
 </manifest>

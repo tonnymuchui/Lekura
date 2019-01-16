@@ -61,7 +61,7 @@ public class SettingActivity extends AppCompatActivity {
         currentUserID = sauth.getCurrentUser().getUid();
         currentUser = sauth.getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance().getReference();
-        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("profile Images");
+        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         Update_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,6 @@ public class SettingActivity extends AppCompatActivity {
                 updateSetting();
             }
         });
-        RetriveUserData();
 
         set_profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +80,8 @@ public class SettingActivity extends AppCompatActivity {
                 startActivityForResult(galleryintent, Gallerypick);
             }
         });
+
+        RetriveUserData();
     }
 
     @Override
@@ -95,14 +96,14 @@ public class SettingActivity extends AppCompatActivity {
         }
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode==RESULT_OK){
+            if (resultCode== RESULT_OK){
                 loadingBar.setTitle("Set profile image");
                 loadingBar.setMessage("Please wait");
                 loadingBar.setCanceledOnTouchOutside(false);
                 loadingBar.show();
 
                 Uri resultUrl = result.getUri();
-                StorageReference filePath = userProfileImageRef.child(currentUserID + ".jpg");
+                StorageReference filePath = userProfileImageRef.child(currentUserID + ".jpg, .png");
                 filePath.putFile(resultUrl).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -110,7 +111,7 @@ public class SettingActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
 
                             Toast.makeText(SettingActivity.this,"Profile image Changed",Toast.LENGTH_SHORT).show();
-                            final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().getResult().toString();
+                            final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
                             reference.child("Users").child(currentUserID).child("image")
                                     .setValue(downloadUrl)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -179,8 +180,7 @@ public class SettingActivity extends AppCompatActivity {
                             String retriveProfilePhoto = dataSnapshot.child("image").getValue().toString();
                             set_user_name.setText(retriveUserName);
                             set_status_name.setText(retriveStatus);
-                            Picasso.get().load(retriveProfilePhoto).into(set_profile_image);
-
+                            Picasso.get().load(retriveProfilePhoto).placeholder(R.drawable.user).into(set_profile_image);
 
                         }
                         else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
@@ -209,5 +209,4 @@ public class SettingActivity extends AppCompatActivity {
         startActivity(mainIntent);
         finish();
     }
-
 }
