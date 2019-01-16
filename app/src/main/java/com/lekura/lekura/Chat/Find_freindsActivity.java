@@ -18,6 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.lekura.lekura.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,6 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Find_freindsActivity extends AppCompatActivity {
     @BindView(R.id.mrecyclerView) RecyclerView mrecyclerView;
     private DatabaseReference userRef;
+    private final List<Contacts> Contacts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +42,7 @@ public class Find_freindsActivity extends AppCompatActivity {
 
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -50,10 +52,10 @@ public class Find_freindsActivity extends AppCompatActivity {
                 .setQuery(userRef, Contacts.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Contacts, FindFriendsViewHolder> adapter = new
+        final FirebaseRecyclerAdapter<Contacts, FindFriendsViewHolder> adapter = new
                 FirebaseRecyclerAdapter<Contacts, FindFriendsViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull FindFriendsViewHolder holder, final int position, @NonNull Contacts model) {
+                    protected void onBindViewHolder(@NonNull final FindFriendsViewHolder holder, final int position, @NonNull final Contacts model) {
 
                         holder.userName.setText(model.getName());
                         holder.userStatus.setText(model.getStatus());
@@ -63,7 +65,14 @@ public class Find_freindsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 String visit_user = getRef(position).getKey();
-                                startActivity(new Intent(Find_freindsActivity.this,MessageChatActivity.class).putExtra("visit_user", visit_user));
+                                String receiverName = Contacts.get(position).getName().toString();
+                                String receiverImage = Contacts.get(position).getImage().toString();
+
+                                startActivity(new Intent(Find_freindsActivity.this,MessageChatActivity.class)
+                                        .putExtra("visit_user", visit_user)
+                                        .putExtra("receiverName",receiverName)
+                                        .putExtra("receiverImage",receiverImage)
+                                );
                             }
                         });
                     }

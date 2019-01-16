@@ -1,10 +1,9 @@
 package com.lekura.lekura.Chat;
 
 public class Contacts {
-    public String name, Status, image;
+    private String name, Status, image;
 
     public Contacts(){
-
     }
     public Contacts(String name, String Status, String image) {
         this.name = name;
