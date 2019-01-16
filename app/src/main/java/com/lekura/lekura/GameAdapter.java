@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import org.jsoup.Jsoup;
+
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> {
@@ -49,10 +51,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position){
         Game game = gameList.get(position);
-        holder.title.setText(game.getName());
-        holder.count.setText(game.getPlatform());
+        holder.title.setText(html2text(game.getName().toString()));
+        holder.count.setText(game.getDescription());
 
-        Glide.with(mContext).load(game.getThumbnail()).into(holder.thumbnail);
+        Glide.with(mContext).load(game.getGameCover()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +92,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
                 default:
             }
             return false;
+        }
+    }
+
+    public String html2text(String html) {
+        try {
+            return Jsoup.parse(html).text();
+        } catch (Exception ignored) {
+            return "";
         }
     }
 }

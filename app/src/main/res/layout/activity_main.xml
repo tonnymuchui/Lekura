@@ -78,5 +78,4 @@
         app:layout_anchor="@+id/appbar"
         app:layout_anchorGravity="bottom|center" />
 
-
 </android.support.design.widget.CoordinatorLayout>
