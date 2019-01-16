@@ -25,7 +25,7 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.MessageV
     private List<Messages> userMessageList;
     private FirebaseAuth mauth;
     private DatabaseReference usersref;
-    public  MessageAdaptor (List<Messages> userMessageList){
+    public  MessageAdaptor(int activity_message_chat, List<Messages> userMessageList){
         this.userMessageList = userMessageList;
     }
     public class MessageViewHolder extends RecyclerView.ViewHolder{

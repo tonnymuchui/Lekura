@@ -65,8 +65,8 @@ public class Find_freindsActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 String visit_user = getRef(position).getKey();
-                                String receiverName = Contacts.get(position).getName().toString();
-                                String receiverImage = Contacts.get(position).getImage().toString();
+                                String receiverName = getRef(position).getKey();
+                                String receiverImage = getRef(position).getKey();
 
                                 startActivity(new Intent(Find_freindsActivity.this,MessageChatActivity.class)
                                         .putExtra("visit_user", visit_user)

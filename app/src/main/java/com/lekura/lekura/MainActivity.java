@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    @BindView(R.id.button) Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,5 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ChatActivity.class));
+            }
+        });
     }
 }

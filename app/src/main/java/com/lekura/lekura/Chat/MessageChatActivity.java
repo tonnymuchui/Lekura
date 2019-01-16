@@ -47,7 +47,7 @@ public class MessageChatActivity extends AppCompatActivity {
     private FirebaseAuth mauth;
     private DatabaseReference RootRef;
     private final List<Messages> messagesList = new ArrayList<>();
-    private LinearLayoutManager linearLayoutManager;
+//    private LinearLayoutManager linearLayoutManager;
     private MessageAdaptor messageAdaptor;
 
     @Override
@@ -56,6 +56,10 @@ public class MessageChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_message_chat);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setTitle("Chats");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mauth = FirebaseAuth.getInstance();
         messageSenderId = mauth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -63,9 +67,16 @@ public class MessageChatActivity extends AppCompatActivity {
         MessageReceiverId = getIntent().getExtras().get("visit_user").toString();
         MessageReceiverName = getIntent().getExtras().get("receiverName").toString();
         MessageReceiverImage = getIntent().getExtras().get("receiverImage").toString();
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView_send_private_message.setLayoutManager(linearLayoutManager);
+
+        messageAdaptor = new MessageAdaptor(R.layout.activity_message_chat,messagesList);
         recyclerView_send_private_message.setAdapter(messageAdaptor);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MessageChatActivity.this);
+        recyclerView_send_private_message.setLayoutManager(layoutManager);
+        recyclerView_send_private_message.setAdapter(messageAdaptor);
+
+//        linearLayoutManager = new LinearLayoutManager(this);
+//        recyclerView_send_private_message.setLayoutManager(linearLayoutManager);
+//        recyclerView_send_private_message.setAdapter(messageAdaptor);
 
     private_btn_send.setOnClickListener(new View.OnClickListener() {
         @Override

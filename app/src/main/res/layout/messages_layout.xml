@@ -17,11 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="13dp"
         android:layout_toEndOf="@+id/message_profile_image"
         android:text="receiver message"
         android:background="@drawable/receiver_layout"
         android:padding="10dp"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -29,11 +30,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="47dp"
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="@+id/receiver_text"
         android:background="@drawable/sender_messages"
         android:text="Sender"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         />
 </RelativeLayout>
