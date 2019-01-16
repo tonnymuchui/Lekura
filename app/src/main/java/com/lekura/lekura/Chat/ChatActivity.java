@@ -63,7 +63,7 @@ public class ChatActivity extends AppCompatActivity {
             public View getView(int position, View view, ViewGroup viewGroup){
                 TextView item = (TextView) super.getView(position,view,viewGroup);
                 item.setTypeface(mTypeface);
-                item.setTextColor(Color.parseColor("#FF3E80F1"));
+                item.setTextColor(Color.parseColor("#000000"));
                 item.setTypeface(item.getTypeface(),Typeface.BOLD);
                 item.setTextSize(TypedValue.COMPLEX_UNIT_DIP,18);
                 return item;

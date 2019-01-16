@@ -103,7 +103,7 @@ public class SettingActivity extends AppCompatActivity {
                 loadingBar.show();
 
                 Uri resultUrl = result.getUri();
-                StorageReference filePath = userProfileImageRef.child(currentUserID + ".jpg, .png");
+                StorageReference filePath = userProfileImageRef.child(currentUserID + ".jpg");
                 filePath.putFile(resultUrl).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
