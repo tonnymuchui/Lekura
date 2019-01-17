@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Chat.Find_freindsActivity">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mrecyclerView"
         android:layout_width="match_parent"

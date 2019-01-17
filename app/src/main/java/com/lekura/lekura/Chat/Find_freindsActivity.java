@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.lekura.lekura.Auth.LoginActivity;
 import com.lekura.lekura.R;
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +45,24 @@ public class Find_freindsActivity extends AppCompatActivity {
 
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.navigate,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == R.id.go_to_groups){
+
+            startActivity(new Intent(Find_freindsActivity.this,ChatActivity.class));
+        }
+
+        return true;
     }
     @Override
     protected void onStart() {
