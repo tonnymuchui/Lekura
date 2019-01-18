@@ -4,6 +4,7 @@ public class Contacts {
     private String name, Status, image;
 
     public Contacts(){
+
     }
     public Contacts(String name, String Status, String image) {
         this.name = name;

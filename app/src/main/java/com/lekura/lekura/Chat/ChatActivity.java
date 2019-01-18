@@ -59,7 +59,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
 
-        getSupportActionBar().setTitle("Users");
+        getSupportActionBar().setTitle("Groups");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -110,7 +110,7 @@ public class ChatActivity extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.main_find_friends_option){
 
-            startActivity(new Intent(ChatActivity.this,ChatActivity.class));
+            startActivity(new Intent(ChatActivity.this,Find_freindsActivity.class));
         }
         if (item.getItemId() == R.id.main_find_Settings_option){
             sendUserToSettingActivity();
