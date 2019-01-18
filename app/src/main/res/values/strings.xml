@@ -20,4 +20,10 @@
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
     <string name="title_activity_signup">SignupActivity</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Download</string>
+    <string name="action_play_next">GAme info</string>
+    <string name="backdrop_title">LOVE MUSIC</string>
+    <string name="backdrop_subtitle">This season top 20 albums</string>
 </resources>
