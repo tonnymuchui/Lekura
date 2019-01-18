@@ -1,5 +1,6 @@
 package com.lekura.lekura;
 
+
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.design.widget.AppBarLayout;
@@ -31,7 +32,19 @@ public class MainActivity extends AppCompatActivity {
     private GameAdapter adapter;
     private List<Game> gameList;
     public ArrayList<Game> mGame= new ArrayList<>();
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.lekura.lekura.Chat.ChatActivity;
+import com.lekura.lekura.Chat.Find_freindsActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

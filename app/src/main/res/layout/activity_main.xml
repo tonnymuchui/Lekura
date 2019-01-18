@@ -4,6 +4,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@android:color/white"
     android:fitsSystemWindows="true">
 
@@ -79,3 +80,9 @@
         app:layout_anchorGravity="bottom|center" />
 
 </android.support.design.widget.CoordinatorLayout>
+
+    tools:context=".MainActivity">
+
+
+</android.support.constraint.ConstraintLayout>
+
